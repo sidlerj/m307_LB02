@@ -351,7 +351,7 @@
         <h2>Kontakt</h2>
         <p class="lead-text-small">Schreiben Sie mir!</p>
         <div>
-            <form id="form" method="post" onsubmit="return showErrorcheckBox(this)" novalidate>
+            <form id="form" method="post" onsubmit="return showErrorcheckBox(this);" novalidate>
                 <div class="row mb-4" id="radio">
                     <div class="col-2 form-check-label">
                         Geschlecht
@@ -393,7 +393,7 @@
                     </div>
                 </div>
                 <div class="form-check ps-5">
-                    <input class="form-check-input" id="checkbox" type="checkbox" name="checkbox" id="flexCheckDefault" required>
+                    <input class="form-check-input" id="checkbox" type="checkbox" name="checkbox" required>
                     <label class="form-check-label" for="checkbox">
                         * Ich bin einverstanden, dass meine angegebenen Daten gespeichert werden.
                     </label>
@@ -402,7 +402,7 @@
                 <span id="success-message" aria-live="polite"></span>
                 <div class="row">
                     <div class="col-3">
-                        <button type="submit" onclick="showErrorradio(this); showSuccess()" name="submit" id="absenden" class="btn subtitle rounded-pill btn-light py-sm-2 px-sm-5 my-sm-5 w-214p">Absenden</button>
+                        <button type="submit" onclick="showErrorradio(this)" name="submit" id="absenden" class="btn subtitle rounded-pill btn-light py-sm-2 px-sm-5 my-sm-5 w-214p">Absenden</button>
                     </div>
                     <div class="col-7">
                         <!-- autofilled wird und die Funktion autofill auf klick ausgeführt wird.-->

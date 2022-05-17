@@ -11,7 +11,7 @@ const checkBox = document.getElementById('checkbox');
 const checkBoxError = document.querySelector('div.error-checkbox');
 const textBox = document.getElementById('textbox');
 const textBoxError = document.querySelector('#textbox + span.error');
-const radio = document.getElementById('radio')
+const radio = document.getElementById('radio');
 const radioError = document.querySelector('span.error-radio');
 const radio1 = document.getElementById('women');
 const radio2 = document.getElementById('man');
@@ -19,7 +19,7 @@ const radio3 = document.getElementById('other');
 const successMessage = document.getElementById('success-message')
 
 //Email Validation
-email.addEventListener('input', function (event) {
+email.addEventListener('input', function () {
     // check if the form fields are valid
     if (email.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message
@@ -32,7 +32,7 @@ email.addEventListener('input', function (event) {
     }
 });
 
-email.addEventListener('submit', function (event) {
+email.addEventListener('submit', function () {
     // Each time the user types something, it checks if the form fields are valid
     if (email.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message.
@@ -69,7 +69,7 @@ function showErroremail() {
 }
 
 // Vorname Validation
-firstName.addEventListener('input', function (event) {
+firstName.addEventListener('input', function () {
     // check if the form fields are valid
     if (firstName.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message
@@ -82,7 +82,7 @@ firstName.addEventListener('input', function (event) {
     }
 });
 
-firstName.addEventListener('submit', function (event) {
+firstName.addEventListener('submit', function () {
     // Each time the user types something, it checks if the form fields are valid
     if (firstName.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message.
@@ -122,7 +122,7 @@ function showErrorname() {
 }
 
 // Telefonnummer Validation
-phoneNumber.addEventListener('input', function (event) {
+phoneNumber.addEventListener('input', function () {
     // check if the form fields are valid
     if (phoneNumber.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message
@@ -135,7 +135,7 @@ phoneNumber.addEventListener('input', function (event) {
     }
 });
 
-phoneNumber.addEventListener('submit', function (event) {
+phoneNumber.addEventListener('submit', function () {
     // Each time the user types something, it checks if the form fields are valid
     if (phoneNumber.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message.
@@ -172,7 +172,7 @@ function showErrorphoneNumber() {
 }
 
 // Textbox Validation
-textBox.addEventListener('input', function (event) {
+textBox.addEventListener('input', function () {
     // check if the form fields are valid
     if (textBox.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message
@@ -185,7 +185,7 @@ textBox.addEventListener('input', function (event) {
     }
 });
 
-textBox.addEventListener('submit', function (event) {
+textBox.addEventListener('submit', function () {
     // Each time the user types something, it checks if the form fields are valid
     if (textBox.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message.
@@ -230,7 +230,7 @@ const countCharacters = () => {
     let numOfEnteredChars = textArea.value.length;
     let counter = numOfEnteredChars;
     characterCounter.textContent = counter;
-    if (counter == maxNumOfChars) {
+    if (counter === maxNumOfChars) {
         textBoxError.textContent = 'Ihre Nachricht kann maximal 300 Zeichen beinhalten.';
         textBox.className = 'form-control';
     }
@@ -239,21 +239,7 @@ const countCharacters = () => {
 textArea.addEventListener("input", countCharacters);
 
 //Checkbox Validation
-function showErrorcheckBox(form) {
-    if (!form.checkbox.checked) {
-        checkBoxError.textContent = 'Sie müssen dieses Feld angewählt haben, um Ihre eingegebenen Daten abzuschicken.';
-        checkBoxError.className = 'error active';
-        checkBox.className = 'form-check-input error-border';
-        return false;
-    } else {
-        checkBoxError.textContent = ''; // Reset the content of the message
-        checkBoxError.className = 'error'; // Reset the visual state of the message
-        checkBox.className = 'form-check-input success-border';
-        return true;
-    }
-}
-
-checkBox.addEventListener('input', function (event) {
+checkBox.addEventListener('input', function () {
     // check if the form fields are valid
     if (checkBox.validity.valid) {
         // In case there is an error message visible, if the field is valid, it removes the error message
@@ -262,12 +248,47 @@ checkBox.addEventListener('input', function (event) {
         checkBox.className = 'form-check-input success-border';
     } else {
         // If there is still an error, it shows the correct error
-        showErrortextBox();
+        showErrorcheckBox();
     }
 });
 
+checkBox.addEventListener('submit', function () {
+    // Each time the user types something, it checks if the form fields are valid
+    if (checkBox.validity.valid) {
+        // In case there is an error message visible, if the field is valid, it removes the error message.
+        checkBoxError.textContent = ''; // Reset the content of the message
+        checkBoxError.className = 'error'; // Reset the visual state of the message
+        checkBox.className = 'form-check-input';
+    } else {
+        // If there is still an error, it shows the correct error
+        showErrorcheckBox();
+    }
+});
+
+form.addEventListener('submit', function (event) {
+    // if the email field is valid, it let the form submit
+    if(!checkBox.validity.valid) {
+        // If it isn't, it displays an appropriate error message
+        showErrortextBox();
+        event.preventDefault();
+        checkBox.className = 'form-check-input error-border';
+    }
+});
+
+function showErrorcheckBox() {
+    if(!this.form.checkbox.checked) {
+        checkBoxError.textContent = 'Sie müssen dieses Feld angewählt haben, um Ihre eingegebenen Daten abzuschicken.';
+        checkBoxError.className = 'error active';
+        checkBox.className = 'form-check-input error-border';
+    } else {
+        checkBoxError.textContent = ''; // Reset the content of the message
+        checkBoxError.className = 'error'; // Reset the visual state of the message
+        checkBox.className = 'form-check-input success-border'
+    }
+}
+
 // Radio Button Validation
-function showErrorradio(form) {
+function showErrorradio() {
     let getSelectedValue = document.querySelector('input[name="flexRadioDefault"]:checked');
     if (getSelectedValue == null) {
         radioError.textContent = 'Sie müssen eine Auswahl treffen.';
@@ -286,7 +307,7 @@ function showErrorradio(form) {
     }
 }
 
-radio.addEventListener('input', function (event) {
+radio.addEventListener('input', function () {
     // check if the form fields are valid
     let getSelectedValue = document.querySelector('input[name="flexRadioDefault"]:checked');
     if (getSelectedValue != null) {
@@ -303,16 +324,6 @@ radio.addEventListener('input', function (event) {
 });
 
 //Success Meldung
-function showSuccess() {
-    if (email.className = 'form-control success-border',
-        checkBox.className = 'form-check-input success-border',
-        textBox.className = 'form-control success-border',
-        phoneNumber.className = 'form-control success-border',
-        firstName.className = 'form-control success-border',
-        radio1.className = 'form-check-input success-border'){
-            successMessage.textContent = 'Das Formular mit Ihren eingegebenen Daten wurde erfolgreich abgeschickt.'; // Show the Success Message
-    }
-}
 
 // Neuladen verhindern
 form.onsubmit = function() {
