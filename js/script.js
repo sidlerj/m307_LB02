@@ -16,7 +16,7 @@ const radioError = document.querySelector('span.error-radio');
 const radio1 = document.getElementById('women');
 const radio2 = document.getElementById('man');
 const radio3 = document.getElementById('other');
-const successMessage = document.getElementById('success-message')
+const successMessage = document.getElementById('success-message');
 
 //Email Validation
 email.addEventListener('input', function () {
@@ -269,7 +269,7 @@ form.addEventListener('submit', function (event) {
     // if the email field is valid, it let the form submit
     if(!checkBox.validity.valid) {
         // If it isn't, it displays an appropriate error message
-        showErrortextBox();
+        showErrorcheckBox();
         event.preventDefault();
         checkBox.className = 'form-check-input error-border';
     }
@@ -283,7 +283,7 @@ function showErrorcheckBox() {
     } else {
         checkBoxError.textContent = ''; // Reset the content of the message
         checkBoxError.className = 'error'; // Reset the visual state of the message
-        checkBox.className = 'form-check-input success-border'
+        checkBox.className = 'form-check-input success-border';
     }
 }
 
@@ -326,9 +326,6 @@ radio.addEventListener('input', function () {
 //Success Meldung
 
 // Neuladen verhindern
-form.onsubmit = function() {
-    return false;
-}
 
 // Beispiel Ausfüllen für Fomular
 /**
