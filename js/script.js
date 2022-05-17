@@ -325,7 +325,7 @@ radio.addEventListener('input', function () {
 
 //Success Meldung
 
-// Neuladen verhindern
+// Reset form
 
 // Beispiel Ausfüllen für Fomular
 /**
