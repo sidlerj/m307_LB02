@@ -160,7 +160,7 @@ form.addEventListener('submit', function (event) {
 function showErrorphoneNumber() {
     if(phoneNumber.validity.valueMissing) {
         // If the field is empty, it display the following error message
-        phoneNumberError.textContent = 'Sie müssen Ihren Nachnamen eingeben.';
+        phoneNumberError.textContent = 'Sie müssen eine Telefonnummer eingeben.';
     } else if(phoneNumber.validity.patternMismatch) {
         // If the field does contain something else than alphabetic character, it displays the following error message
         phoneNumberError.textContent = 'Sie müssen eine richtige Telefonnummer eingeben. Tipp: Achten Sie auf die Schreibweise.';
@@ -231,7 +231,7 @@ const countCharacters = () => {
     characterCounter.textContent = counter;
     if (counter === maxNumOfChars) {
         textBoxError.textContent = 'Ihre Nachricht kann maximal 300 Zeichen beinhalten.';
-        textBox.className = 'form-control';
+        textBox.className = 'form-control success-border';
     }
 };
 
