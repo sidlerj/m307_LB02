@@ -326,27 +326,3 @@ radio.addEventListener('input', function () {
 //Success Meldung
 
 // Reset form
-
-// Beispiel Ausfüllen für Fomular
-/**
- *
- * @type {string}
- */
-//Json erstellt und in var eigefügt
-let autofillData = '{"name":"Max Muster", "email":"max.muster@example.com", "betreff":"example betreff", "nachricht":"example nachricht"}';
-
-/**
- *
- * @type {any}
- */
-// Objekt autofill wird erstellt //nutzbar gemacht für js
-const autofillClass = JSON.parse(autofillData);
-
-
-// Füllt Formular aus (Hohlt values aus JSON Objekt)
-function autofill() {
-    document.getElementById('firstName').value = autofillClass.firstName;
-    document.getElementById('mail').value = autofillClass.email;
-    document.getElementById('betreff').value = autofillClass.betreff;
-    document.getElementById('textblock').value = autofillClass.nachricht;
-}
