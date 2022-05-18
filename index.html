@@ -376,7 +376,7 @@
                         <span class="error" aria-live="polite"></span>
                     </div>
                     <label class="col" for="phoneNumber">
-                        <input type="text" id="phoneNumber" class="form-control" placeholder="Telefonnummer * (+XX XX XXX XX XX)" required pattern="[+]{1}[1-9]{2}[ ]{1}[1-9]{2}[ ]{1}[1-9]{3}[ ]{1}[1-9]{2}[ ]{1}[1-9]{2}" minlength="2">
+                        <input type="text" id="phoneNumber" class="form-control" placeholder="Telefonnummer *" pattern="(\b(0041|0)|\B\+41)(\s?\(0\))?(\s)?[1-9]{2}(\s)?[0-9]{3}(\s)?[0-9]{2}(\s)?[0-9]{2}\b" required>
                         <span class="error" aria-live="polite"></span>
                     </label>
                 </div>

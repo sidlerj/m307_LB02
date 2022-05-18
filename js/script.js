@@ -16,7 +16,6 @@ const radioError = document.querySelector('span.error-radio');
 const radio1 = document.getElementById('women');
 const radio2 = document.getElementById('man');
 const radio3 = document.getElementById('other');
-const successMessage = document.getElementById('success-message');
 
 //Email Validation
 email.addEventListener('input', function () {
