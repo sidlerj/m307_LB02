@@ -22,7 +22,7 @@ function checkEmail(id,input) {
         isNotValid: false,
         msg: showSuccess(id)
     }
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     if (!re.test(input.trim())) {
         result = {
             isNotValid: true,
@@ -31,9 +31,37 @@ function checkEmail(id,input) {
     }
     return result;
 }
+// Checks if Firstname is valid (if no numbers are included it will show success message)
+function checkFirstName(id, input) {
+    let result = {
+        isNotValid: false,
+        msg: showSuccess(id)
+    }
+    const re = new RegExp("/^[a-z ,.'-]+$/i");
+    if (!re.test(input  )) {
+        result = {
+            isNotValid: true,
+            msg: showError(id, 'Firstname is not valid')
+        }
+    }
+    return result;
+}
 
-//TODO: Check article for throwing errors in node js
-// https://stackoverflow.com/questions/33086247/throwing-an-error-in-node-js
+// check if Phonenumber is  valid
+function checkNumber(id, input) {
+    let result = {
+        isNotValid: false,
+        msg: showSuccess(id)
+    }
+    const re = new RegExp("/(\\b(0041|0)|\\B\\+41)(\\s?\\(0\\))?(\\s)?[1-9]{2}(\\s)?[0-9]{3}(\\s)?[0-9]{2}(\\s)?[0-9]{2}\\b/");
+    if (!re.test(input.trim())) {
+        result = {
+            isNotValid: true,
+            msg: showError(id, 'Firstname is not valid')
+        }
+    }
+    return result;
+}
 
 // Check required fields
 function checkRequired(id, input) {
@@ -84,5 +112,7 @@ function checkLength(id, input, min, max) {
 module.exports = {
     checkEmail,
     checkLength,
-    checkRequired
+    checkRequired,
+    checkFirstName,
+    checkNumber
 }

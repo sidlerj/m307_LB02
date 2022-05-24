@@ -20,7 +20,7 @@ console.log(`Running at Port ${port}`);
 server.timeout = 1000 * 60 * 2; // 2 minutes
 
 //Warning: Korrekt setzen!!
-const staticPath = 'data/';
+const staticPath = 'node data';
 const registrationFile = staticPath+'registration.json';
 
 
@@ -32,12 +32,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-//test uuid
-app.get('/test1', (req, res) => {
-    const id = uuidv4();
-    res.send(id);
-});
+})
 
 // necessary for posting data
 // support json encoded bodies
@@ -55,14 +50,17 @@ app.post('/register', (req, res) => {
     //Daten des Posts-Requests auslesen und zusätzlich eine User-id erzeugen
     let userObj = {
         "id": uuidv4(),
-        "username": req.body.user.username,
+        "gender": req.body.user.gender,
+        "firstname": req.body.user.firstname,
+        "phonenumber": req.body.user.phonenumber,
         "email": req.body.user.email,
-        "password": req.body.user.password
+        "message": req.body.user.message
     }
 
     let result = Validation.validateUser(userObj);
     if (result.isNotValid) {
         res.status(HTTP_STATUS_NO_ACCEPTABLE).send(result.msg);
+        console.log("Found error in result")
     } else {
         //Speicherung des neuen Benutzers
         let userRepo = new UserRepository(registrationFile);
