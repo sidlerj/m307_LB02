@@ -1,7 +1,5 @@
 /*
-Thema: Registration server
-Einfacher Server, um Benutzer zu registrieren
-Der Server dient zu Übung zur Validierung von Benutzereingaben im Backend.
+Server um Eingaben zu validieren
  */
 
 'use strict';
@@ -20,19 +18,18 @@ console.log(`Running at Port ${port}`);
 server.timeout = 1000 * 60 * 2; // 2 minutes
 
 //Warning: Korrekt setzen!!
-const staticPath = 'node data';
+const staticPath = './data/';
 const registrationFile = staticPath+'registration.json';
 
 
 // Use middleware to set the default Content-Type
-app.use(function (req, res, next) {
+let use = app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Origin', 'http://localhost:63342');
     res.header('Content-Type', 'application/json');
     next();
 });
 
-})
 
 // necessary for posting data
 // support json encoded bodies

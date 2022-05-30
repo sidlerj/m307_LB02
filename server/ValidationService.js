@@ -11,6 +11,18 @@ function validateUser(userObj) {
     let result = validateLib.checkRequired("gender", userObj.gender);
     if (result.isNotValid) { return result; }
 
+    result = validateLib.checkRequired("firstname", userObj.firstname);
+    if (result.isNotValid) { return result; }
+
+    result = validateLib.checkRequired("phonenumber", userObj.phonenumber);
+    if (result.isNotValid) { return result; }
+
+    result = validateLib.checkRequired("email", userObj.email);
+    if (result.isNotValid) { return result; }
+
+    result = validateLib.checkRequired("message", userObj.message);
+    if (result.isNotValid) { return result; }
+
     //check length
     result = validateLib.checkFirstName("firstname", userObj.firstname);
     if (result.isNotValid) { return result; }
@@ -20,7 +32,7 @@ function validateUser(userObj) {
     if (result.isNotValid) { return result; }
 
     //check E-Mail
-    result = validateLib.checkEmail("email",userObj.email, 3, 15);
+    result = validateLib.checkEmail("email",userObj.email);
     if (result.isNotValid) { return result; }
 
     //check length

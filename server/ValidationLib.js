@@ -31,14 +31,16 @@ function checkEmail(id,input) {
     }
     return result;
 }
+
 // Checks if Firstname is valid (if no numbers are included it will show success message)
 function checkFirstName(id, input) {
     let result = {
         isNotValid: false,
         msg: showSuccess(id)
     }
-    const re = new RegExp("/^[a-z ,.'-]+$/i");
-    if (!re.test(input  )) {
+    //const re = new RegExp("/^[a-z ,.'-]+$/i");
+    const re = new RegExp("^[A-Za-z][^\\d~`?!^*¨ˆ;@=$%{}\\[\\]\\|\\\\\\/<>#“.,]*$");
+    if (!re.test(input.trim())) {
         result = {
             isNotValid: true,
             msg: showError(id, 'Firstname is not valid')
@@ -47,17 +49,19 @@ function checkFirstName(id, input) {
     return result;
 }
 
+
 // check if Phonenumber is  valid
 function checkNumber(id, input) {
     let result = {
         isNotValid: false,
         msg: showSuccess(id)
     }
-    const re = new RegExp("/(\\b(0041|0)|\\B\\+41)(\\s?\\(0\\))?(\\s)?[1-9]{2}(\\s)?[0-9]{3}(\\s)?[0-9]{2}(\\s)?[0-9]{2}\\b/");
+    //const re = new RegExp("/(\\b(0041|0)|\\B\\+41)(\\s?\\(0\\))?(\\s)?[1-9]{2}(\\s)?[0-9]{3}(\\s)?[0-9]{2}(\\s)?[0-9]{2}\\b/");
+    const re = new RegExp("/^\\+(?:[0-9] ?){6,14}[0-9]$/");
     if (!re.test(input.trim())) {
         result = {
             isNotValid: true,
-            msg: showError(id, 'Firstname is not valid')
+            msg: showError(id, 'Phonenumber is not valid')
         }
     }
     return result;
